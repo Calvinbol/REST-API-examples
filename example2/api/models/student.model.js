@@ -1,5 +1,5 @@
 const { DataTypes } = require('sequelize');
-const { sequelize } = require('../db/index')
+const { sequelize } = require('../../db/index')
 
 const Student = sequelize.define('student', {
   name: {
@@ -11,6 +11,9 @@ const Student = sequelize.define('student', {
   fav_pokemon: {
 		type: DataTypes.STRING
 	}
+},
+{
+  timestamps: false
 })
 
 module.exports = Student
