@@ -31,7 +31,7 @@ async function syncModels () {
   }
 }
 
-async function start() {
+async function dbConnect() {
   try {
     await checkDB()
     await syncModels()
@@ -40,16 +40,13 @@ async function start() {
   }
 }
 
-start()
-
 // Modelos
 const Student = sequelize.define('student', {
   name: {
     type: DataTypes.STRING
   },
-  email: {
-		type: DataTypes.STRING,
-    unique: true
+  age: {
+		type: DataTypes.INTEGER,
 	},
   fav_pokemon: {
 		type: DataTypes.STRING
@@ -66,7 +63,8 @@ const morgan = require("morgan");
 const app = express()
 const port = 3000
 
-app.listen(port, () => {
+app.listen(port, async () => {
+  await dbConnect()
   console.log(`--> Servidor arrancado en puerto ${port}`)
 })
 
